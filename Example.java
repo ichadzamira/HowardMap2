@@ -20,21 +20,23 @@ public class Example {
 			//     CONNECT TO DATABASE
 			//
 			//
-			// check for jdbc driver  
+			// check for jdbc driver
 
+
+               //Looks for the database by the given information
 			Class.forName("org.postgresql.Driver");
 
-			String url = "jdbc:postgresql://ec2-54-204-24-202.compute-1.amazonaws.com:5432/d95r26089mgb07";  
-			
-			Properties props = new Properties(); 
-			props.setProperty("user", "enheidiptehcsa"); 
-			props.setProperty("password", "EM9N7RPQOHUE00fsf12hPRlOfN"); 
+			String url = "jdbc:postgresql://ec2-54-204-24-202.compute-1.amazonaws.com:5432/d95r26089mgb07";
+
+			Properties props = new Properties();
+			props.setProperty("user", "enheidiptehcsa");
+			props.setProperty("password", "EM9N7RPQOHUE00fsf12hPRlOfN");
 			props.setProperty("ssl", "true");
 			props.setProperty("sslfactory", "org.postgresql.ssl.NonValidatingFactory");
 			//
 			// connect to the database
 
-			Connection conn = DriverManager.getConnection(url,props); 
+			Connection conn = DriverManager.getConnection(url,props);
 			//
 			//*******************************************************
 
@@ -44,8 +46,8 @@ public class Example {
 			//
 			//
 			String query = "SELECT * FROM \"NODEDESCRIPTION\" WHERE \"TYPE\" = 0";
-			//			      
-			//  	
+			//
+			//
 			// create statement and execute query
 			//
 			//
@@ -58,11 +60,11 @@ public class Example {
 			//
 			//
 			while(rs2.next()) {
-				//
+				//gets string of the SID in the node tables created
 				String sid = rs2.getString("SID");
-				//
+				//gets the description from the node tables created
 				String desc = rs2.getString("Description");
-				//
+				//Prints out the value
 				System.out.println("SID = " + sid +  " Description = " + desc);
 			}
 			//******************************************************
@@ -72,6 +74,7 @@ public class Example {
 			conn.close();
 
 		}
+		//Catches any errors
 		catch (Exception e)
 		{
 			System.out.println(e);
